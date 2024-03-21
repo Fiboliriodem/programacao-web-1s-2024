@@ -1,12 +1,20 @@
 
 function verificarNumeroPrimo(n) {
-    // Verifica se o número é menor ou igual a 1
+    // menos que um não utilizavel
     if (n <= 1) {
         return false;
     }
-    // Verifica se o número é divisível por algum número além de 1 e ele mesmo
-    for (let i = 2; i <= Math.sqrt(n); i++) {
-        if (n % i === 0) {
+    // 2 e 3 são primos mas n encaixam nos parametros
+    if (n === 2 || n === 3) {
+        return true;
+    }
+    // Verifica se o número é divisível por 2 ou por 3
+    if (n % 2 === 0 || n % 3 === 0) {
+        return false;
+    }
+    // Verifica divisibilidade apenas por números ímpares > que 3 até a "raiz quadrada de n(roubei esse truque//não fui eu que pensei essa)"
+    for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) {
             return false;
         }
     }
